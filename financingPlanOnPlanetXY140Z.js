@@ -1,14 +1,12 @@
 function finance(n) {
-   let sum =0;
-   //n = n+1;
-    let a1=0;
-   for(let i = n; i>0; i--){
-       //sum += (i+n-1)/2*n;
-       const an=a1+n;
-       sum += (i+n)/2*(n+1);
-       console.log(i,a1,an);
-       a1+=2;
-   }
-   return sum;
+    let sum = 0;
+    let a1 = n * 2,an=a1;
+    for (let i = n + 1; i > 0; i--) {
+        sum += (a1+an)/2*(n-i+2);
+        a1 -= 2;
+        an -= 1;
+    }
+    return sum;
 }
-console.log(finance(5));
+
+console.log(finance(3710));
