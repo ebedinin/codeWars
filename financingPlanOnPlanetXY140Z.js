@@ -8,5 +8,6 @@ function finance(n) {
     }
     return sum;
 }
+const finance2 = n => n * ++n * ++n / 2;
 
 console.log(finance(3710));
