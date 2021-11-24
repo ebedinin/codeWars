@@ -1,42 +1,26 @@
-const number9 = (n) => {
-    //console.log(n,Math.floor(n/10),n%10);
-    //return Math.floor(n/10) + (n%10 === 9?1:0);
-    let i = 1;
-    let module = n % 10 ** i;
-    let count = 0;
-    /*do{
-        count
-    }*/
-    for (let i = 1; i <= n; i++) {
-        const arr = i.toString(10).slice();
-        let currentCount = 0;
-        for (let j = 0; j < arr.length; j++) {
-            if (arr[j] === "9") {
-                currentCount++;
-            }
-        }
-        //if (currentCount) console.log(n,i,currentCount);
-        count += currentCount;
-    }
-    return count;
-};
-const number92 = (n) => {
+const count9 = (arr) => {
+    if (arr.length === 0) return 0;
+    if (arr.length === 1) return  arr[0] === 9 ? 1 : 0;
 
-    let sum = 0;
-    while (number > 0) {
-        sum += number % 10;
-        number = Math.floor(number / 10);
-    }
-    return sum;
+    const rating = arr.length;
+    const k = arr[0];
+    const a = (rating - 1) * 10 ** (rating - 2) * (k);
+    const b1 = (Number(arr.slice(1).join(''))+ count9(arr.slice(1))+1);
+    const b2 = count9(arr.slice(1));
+    const b = (arr[0] === 9) ? b1 : b2;
+    return a+b;
 };
-//console.log(number9(9));
-//console.log(number9(10));
-console.log(number9(8));
-console.log(number9(975));
-//console.log(number9(98));
-console.log(number9(100));
-//console.log(number9(998));
-console.log(number9(1000));
-console.log(number9(10000));
-console.log(number9(100000));
-//console.log(number9(100));
+
+const number9 = (n) => {
+    const arr = [];
+    let iter = 0;
+    let number = n;
+    while (number > 0) {
+        arr.unshift(number % 10);
+        number = Math.floor(number / 10);
+        iter++;
+    }
+    return count9(arr);
+};
+console.log(number9(937));
+console.log(number9(10000000));
